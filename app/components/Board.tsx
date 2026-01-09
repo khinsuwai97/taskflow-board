@@ -65,21 +65,21 @@ export function Board() {
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
             {/* Header */}
             <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-20 shadow-sm">
-                <div className="max-w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4">
-                    <div className="flex items-center justify-between gap-2 sm:gap-4">
-                        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                            <div className="p-1.5 sm:p-2 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg sm:rounded-xl shadow-md flex-shrink-0">
-                                <Layers className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
+                <div className="container mx-auto max-w-480 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 py-4 sm:py-5 md:py-6 ">
+                    <div className="flex items-center justify-between gap-3 sm:gap-4 md:gap-6">
+                        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0">
+                            <div className="p-2 sm:p-2.5 md:p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg md:rounded-xl shadow-md flex-shrink-0">
+                                <Layers className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
                             </div>
                             <div className="min-w-0">
-                                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent truncate">
+                                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent truncate">
                                     TaskFlow Board
                                 </h1>
-                                <p className="text-xs sm:text-sm text-slate-600 hidden sm:block">Organize your workflow efficiently</p>
+                                <p className="text-xs sm:text-sm md:text-base text-slate-600 hidden sm:block">Organize your workflow efficiently</p>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
                             {/* Mobile stats toggle */}
                             <button
                                 onClick={() => setShowStats(!showStats)}
@@ -89,14 +89,14 @@ export function Board() {
                             </button>
 
                             {/* Desktop stats */}
-                            <div className="hidden sm:flex items-center gap-2 lg:gap-3">
-                                <div className="px-3 lg:px-4 py-1.5 lg:py-2 bg-indigo-50 rounded-lg border border-indigo-200">
-                                    <p className="text-xs lg:text-sm font-medium text-indigo-900">
+                            <div className="hidden sm:flex items-center gap-2 md:gap-3 lg:gap-4">
+                                <div className="px-3 md:px-4 lg:px-5 py-2 md:py-2.5 lg:py-3 bg-indigo-50 rounded-lg md:rounded-xl border border-indigo-200">
+                                    <p className="text-xs md:text-sm lg:text-base font-medium text-indigo-900 whitespace-nowrap">
                                         {columnOrder.length} {columnOrder.length === 1 ? 'Column' : 'Columns'}
                                     </p>
                                 </div>
-                                <div className="px-3 lg:px-4 py-1.5 lg:py-2 bg-purple-50 rounded-lg border border-purple-200">
-                                    <p className="text-xs lg:text-sm font-medium text-purple-900">
+                                <div className="px-3 md:px-4 lg:px-5 py-2 md:py-2.5 lg:py-3 bg-purple-50 rounded-lg md:rounded-xl border border-purple-200">
+                                    <p className="text-xs md:text-sm lg:text-base font-medium text-purple-900 whitespace-nowrap">
                                         {totalTasks} {totalTasks === 1 ? 'Task' : 'Tasks'}
                                     </p>
                                 </div>
@@ -106,7 +106,7 @@ export function Board() {
 
                     {/* Mobile stats dropdown */}
                     {showStats && (
-                        <div className="sm:hidden mt-3 flex gap-2 animate-slide-down">
+                        <div className="sm:hidden mt-3 md:mt-4 flex gap-2 md:gap-3 animate-slide-down">
                             <div className="flex-1 px-3 py-2 bg-indigo-50 rounded-lg border border-indigo-200">
                                 <p className="text-xs font-medium text-indigo-900 text-center">
                                     {columnOrder.length} {columnOrder.length === 1 ? 'Column' : 'Columns'}
@@ -123,14 +123,14 @@ export function Board() {
             </header>
 
             {/* Board */}
-            <div className="w-full px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
+            <div className="container mx-auto max-w-480 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 py-6 sm:py-8 md:py-10 lg:py-12">
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="all-columns" direction="horizontal" type="column">
                         {(provided) => (
                             <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                className="flex gap-3 sm:gap-4 lg:gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100"
+                                className="flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100"
                             >
                                 {columnOrder.map((columnId, index) => {
                                     const column = columns[columnId];
@@ -140,7 +140,7 @@ export function Board() {
 
                                 {/* Add Column Button */}
                                 {isAddingColumn ? (
-                                    <div className="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 border-2 border-slate-200 shadow-sm animate-slide-down flex-shrink-0">
+                                    <div className="min-w-70 sm:min-w-[320px] md:min-w-85 lg:min-w-90 max-w-90 bg-white rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 border-2 border-slate-200 shadow-sm animate-slide-down flex-shrink-0">
                                         <input
                                             type="text"
                                             value={newColumnTitle}
@@ -153,13 +153,13 @@ export function Board() {
                                                 }
                                             }}
                                             placeholder="Column title"
-                                            className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm mb-3"
+                                            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base mb-4"
                                             autoFocus
                                         />
-                                        <div className="flex flex-col sm:flex-row gap-2">
+                                        <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                                             <button
                                                 onClick={handleAddColumn}
-                                                className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-xs sm:text-sm font-medium"
+                                                className="flex-1 px-4 py-2.5 md:py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm sm:text-base font-medium"
                                             >
                                                 Add Column
                                             </button>
@@ -168,7 +168,7 @@ export function Board() {
                                                     setIsAddingColumn(false);
                                                     setNewColumnTitle('');
                                                 }}
-                                                className="flex-1 px-3 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors text-xs sm:text-sm font-medium"
+                                                className="flex-1 px-4 py-2.5 md:py-3 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors text-sm sm:text-base font-medium"
                                             >
                                                 Cancel
                                             </button>
@@ -177,12 +177,12 @@ export function Board() {
                                 ) : (
                                     <button
                                         onClick={() => setIsAddingColumn(true)}
-                                        className="min-w-[280px] sm:min-w-[320px] max-w-[320px] h-[100px] sm:h-[120px] bg-white/60 hover:bg-white/80 border-2 border-dashed border-slate-300 hover:border-indigo-400 rounded-xl sm:rounded-2xl transition-all flex flex-col items-center justify-center gap-2 text-slate-600 hover:text-indigo-600 group flex-shrink-0"
+                                        className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px] lg:min-w-[360px] max-w-[360px] h-[120px] sm:h-[140px] md:h-[160px] bg-white/60 hover:bg-white/80 border-2 border-dashed border-slate-300 hover:border-indigo-400 rounded-xl md:rounded-2xl transition-all flex flex-col items-center justify-center gap-3 md:gap-4 text-slate-600 hover:text-indigo-600 group flex-shrink-0"
                                     >
-                                        <div className="p-2 sm:p-3 bg-slate-100 group-hover:bg-indigo-100 rounded-lg sm:rounded-xl transition-colors">
-                                            <Plus className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+                                        <div className="p-3 md:p-4 bg-slate-100 group-hover:bg-indigo-100 rounded-lg md:rounded-xl transition-colors">
+                                            <Plus className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                                         </div>
-                                        <span className="font-medium text-xs sm:text-sm">Add Column</span>
+                                        <span className="font-medium text-sm sm:text-base md:text-lg">Add Column</span>
                                     </button>
                                 )}
                             </div>

@@ -1,8 +1,7 @@
-// src/app/layout.tsx
 
 import type { Metadata } from "next";
 import { ReduxProvider } from "./components/ReduxProvider";
-import "../styles/globals.css"
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: "TaskFlow Board - Manage Your Tasks Efficiently",

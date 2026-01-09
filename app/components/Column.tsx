@@ -70,10 +70,10 @@ export function Column({ column, index }: ColumnProps) {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     className={`${columnColors[index % columnColors.length]
-                        } rounded-xl sm:rounded-2xl p-3 sm:p-4 border-2 min-w-[280px] sm:min-w-[320px] w-full sm:max-w-[320px] flex flex-col shadow-sm flex-shrink-0`}
+                        } rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 border-2 min-w-[280px] sm:min-w-[320px] md:min-w-[340px] lg:min-w-[360px] w-full max-w-[360px] flex flex-col shadow-md hover:shadow-lg transition-shadow flex-shrink-0`}
                 >
-                    <div {...provided.dragHandleProps} className="mb-3 sm:mb-4">
-                        <div className="flex items-center justify-between mb-1">
+                    <div {...provided.dragHandleProps} className="mb-4 sm:mb-5 md:mb-6">
+                        <div className="flex items-center justify-between gap-3 mb-2">
                             {isEditingTitle ? (
                                 <input
                                     type="text"
@@ -87,13 +87,13 @@ export function Column({ column, index }: ColumnProps) {
                                             setIsEditingTitle(false);
                                         }
                                     }}
-                                    className="flex-1 px-2 py-1 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-lg font-bold text-slate-800"
+                                    className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base sm:text-lg md:text-xl font-bold text-slate-800"
                                     autoFocus
                                 />
                             ) : (
-                                <h2 className="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2 flex-wrap">
+                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 flex items-center gap-2 flex-wrap">
                                     <span className="break-words">{column.title}</span>
-                                    <span className="px-1.5 sm:px-2 py-0.5 bg-white/60 rounded-full text-xs font-semibold text-slate-600">
+                                    <span className="px-2 sm:px-2.5 py-1 bg-white/60 rounded-full text-xs sm:text-sm font-semibold text-slate-600">
                                         {column.taskIds.length}
                                     </span>
                                 </h2>
@@ -102,9 +102,9 @@ export function Column({ column, index }: ColumnProps) {
                             <div className="relative ml-2">
                                 <button
                                     onClick={() => setShowMenu(!showMenu)}
-                                    className="p-1 sm:p-1.5 hover:bg-white/50 rounded-lg transition-colors"
+                                    className="p-2 hover:bg-white/50 rounded-lg transition-colors"
                                 >
-                                    <MoreVertical className="w-4 h-4 text-slate-600" />
+                                    <MoreVertical className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" />
                                 </button>
 
                                 {showMenu && (
@@ -113,22 +113,22 @@ export function Column({ column, index }: ColumnProps) {
                                             className="fixed inset-0 z-10"
                                             onClick={() => setShowMenu(false)}
                                         />
-                                        <div className="absolute right-0 top-8 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-20 min-w-[140px] animate-slide-down">
+                                        <div className="absolute right-0 top-10 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-20 min-w-[160px] animate-slide-down">
                                             <button
                                                 onClick={() => {
                                                     setIsEditingTitle(true);
                                                     setShowMenu(false);
                                                 }}
-                                                className="w-full px-3 py-2 text-left text-xs sm:text-sm hover:bg-slate-50 flex items-center gap-2 text-slate-700"
+                                                className="w-full px-4 py-2.5 text-left text-sm hover:bg-slate-50 flex items-center gap-2 text-slate-700"
                                             >
-                                                <Edit className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                                                <Edit className="w-4 h-4" />
                                                 Edit Title
                                             </button>
                                             <button
                                                 onClick={handleDeleteColumn}
-                                                className="w-full px-3 py-2 text-left text-xs sm:text-sm hover:bg-rose-50 flex items-center gap-2 text-rose-600"
+                                                className="w-full px-4 py-2.5 text-left text-sm hover:bg-rose-50 flex items-center gap-2 text-rose-600"
                                             >
-                                                <Trash2 className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                                                <Trash2 className="w-4 h-4" />
                                                 Delete Column
                                             </button>
                                         </div>
@@ -143,7 +143,7 @@ export function Column({ column, index }: ColumnProps) {
                             <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                className={`flex-1 space-y-2 sm:space-y-3 min-h-[150px] sm:min-h-[200px] rounded-lg sm:rounded-xl p-1 sm:p-2 transition-colors ${snapshot.isDraggingOver ? 'bg-white/40' : ''
+                                className={`flex-1 space-y-3 md:space-y-4 min-h-[200px] md:min-h-[250px] rounded-lg md:rounded-xl p-2 md:p-3 transition-colors ${snapshot.isDraggingOver ? 'bg-white/40' : ''
                                     }`}
                             >
                                 {column.taskIds.map((taskId, index) => {
@@ -172,37 +172,37 @@ export function Column({ column, index }: ColumnProps) {
                     </Droppable>
 
                     {isAddingTask ? (
-                        <div className="mt-2 sm:mt-3 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-sm border border-slate-200 space-y-2 animate-slide-down">
+                        <div className="mt-3 md:mt-4 bg-white rounded-lg md:rounded-xl p-3 md:p-4 shadow-sm border border-slate-200 space-y-3 animate-slide-down">
                             <input
                                 type="text"
                                 value={newTask.title}
                                 onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
                                 placeholder="Task title"
-                                className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm"
+                                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
                                 autoFocus
                             />
                             <textarea
                                 value={newTask.description}
                                 onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
                                 placeholder="Task description"
-                                className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm resize-none"
-                                rows={2}
+                                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base resize-none"
+                                rows={3}
                             />
                             <select
                                 value={newTask.priority}
                                 onChange={(e) =>
                                     setNewTask({ ...newTask, priority: e.target.value as 'low' | 'medium' | 'high' })
                                 }
-                                className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-xs sm:text-sm"
+                                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
                             >
                                 <option value="low">Low Priority</option>
                                 <option value="medium">Medium Priority</option>
                                 <option value="high">High Priority</option>
                             </select>
-                            <div className="flex flex-col sm:flex-row gap-2">
+                            <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                                 <button
                                     onClick={handleAddTask}
-                                    className="flex-1 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-xs sm:text-sm font-medium"
+                                    className="flex-1 px-4 py-2.5 md:py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm sm:text-base font-medium"
                                 >
                                     Add Task
                                 </button>
@@ -211,7 +211,7 @@ export function Column({ column, index }: ColumnProps) {
                                         setIsAddingTask(false);
                                         setNewTask({ title: '', description: '', priority: 'medium' });
                                     }}
-                                    className="flex-1 px-3 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors text-xs sm:text-sm font-medium"
+                                    className="flex-1 px-4 py-2.5 md:py-3 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors text-sm sm:text-base font-medium"
                                 >
                                     Cancel
                                 </button>
@@ -220,9 +220,9 @@ export function Column({ column, index }: ColumnProps) {
                     ) : (
                         <button
                             onClick={() => setIsAddingTask(true)}
-                            className="mt-2 sm:mt-3 w-full px-3 py-2 sm:py-2.5 bg-white/60 hover:bg-white/80 text-slate-700 rounded-lg transition-all flex items-center justify-center gap-2 font-medium text-xs sm:text-sm border-2 border-dashed border-slate-300 hover:border-slate-400"
+                            className="mt-3 md:mt-4 w-full px-4 py-3 bg-white/60 hover:bg-white/80 text-slate-700 rounded-lg transition-all flex items-center justify-center gap-2 font-medium text-sm sm:text-base border-2 border-dashed border-slate-300 hover:border-slate-400"
                         >
-                            <Plus className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                            <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                             Add Task
                         </button>
                     )}
