@@ -1,34 +1,48 @@
-/* src/app/globals.css */
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
+/* --------------------------------------------------
+   CSS VARIABLES
+-------------------------------------------------- */
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+/* --------------------------------------------------
+   BASE RESET (Tailwind-friendly)
+-------------------------------------------------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-/* Responsive font sizes for better readability */
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Critical: prevent accidental horizontal scroll */
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------
+   RESPONSIVE TYPOGRAPHY
+-------------------------------------------------- */
 @media (max-width: 640px) {
   html {
     font-size: 14px;
-  }
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 16px;
   }
 }
 
@@ -44,16 +58,17 @@ html {
   }
 }
 
-body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  color: var(--foreground);
-  background: var(--background);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+/* --------------------------------------------------
+   SELECTION
+-------------------------------------------------- */
+::selection {
+  background-color: rgba(99, 102, 241, 0.25);
+  color: inherit;
 }
 
-/* Custom scrollbar for desktop */
+/* --------------------------------------------------
+   SCROLLBARS (DESKTOP ONLY)
+-------------------------------------------------- */
 @media (min-width: 640px) {
   ::-webkit-scrollbar {
     width: 10px;
@@ -62,12 +77,12 @@ body {
 
   ::-webkit-scrollbar-track {
     background: #f1f5f9;
-    border-radius: 5px;
+    border-radius: 6px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 5px;
+    border-radius: 6px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -82,44 +97,19 @@ body {
   }
 }
 
-/* Thin scrollbar utility for horizontal scrolling */
+/* Firefox */
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-/* Selection */
-::selection {
-  background-color: rgba(99, 102, 241, 0.2);
-  color: inherit;
-}
-
-/* Touch-friendly tap highlight for mobile */
-@media (max-width: 640px) {
-  * {
-    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.1);
-  }
-}
-
-/* Prevent text selection during drag on mobile */
-.dragging {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Animation keyframes */
+/* --------------------------------------------------
+   ANIMATIONS
+-------------------------------------------------- */
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -128,49 +118,68 @@ body {
 }
 
 .animate-slide-down {
-  animation: slideDown 0.2s ease-out;
+  animation: slideDown 0.2s ease-out both;
 }
 
-/* Improve touch scrolling on iOS */
+/* --------------------------------------------------
+   DRAG & DROP UX
+-------------------------------------------------- */
+.dragging {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grabbing;
+}
+
+/* Improve momentum scrolling on iOS */
 .overflow-x-auto {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Ensure buttons are easily tappable on mobile */
+/* --------------------------------------------------
+   BUTTON & TOUCH TARGETS
+-------------------------------------------------- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Mobile tap targets */
 @media (max-width: 640px) {
   button {
     min-height: 44px;
   }
-
-  button.p-1,
-  button.p-1\.5,
-  button.p-2 {
-    min-height: 40px;
-    min-width: 40px;
-  }
 }
 
-/* Better spacing on larger screens */
-@media (min-width: 1920px) {
-  .container {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-}
-
-/* Improve touch targets on tablets */
+/* Tablet tap targets */
 @media (min-width: 640px) and (max-width: 1024px) {
   button {
     min-height: 40px;
   }
 }
 
-/* Prevent horizontal overflow */
-* {
-  max-width: 100%;
+/* Remove ugly tap highlight on mobile */
+@media (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.15);
+  }
 }
 
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* --------------------------------------------------
+   TRANSITIONS (SUBTLE & SAFE)
+-------------------------------------------------- */
+.transition-default {
+  transition-property: background-color, border-color, color, box-shadow,
+    transform, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------
+   CONTAINER SPACING (LARGE SCREENS)
+-------------------------------------------------- */
+@media (min-width: 1920px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 }
