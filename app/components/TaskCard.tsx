@@ -103,7 +103,7 @@ export function TaskCard({ task }: TaskCardProps) {
         <h3 className="font-semibold text-slate-900 text-sm sm:text-base leading-tight flex-1 break-words">
           {task.title}
         </h3>
-        <div className="flex gap-1.5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex gap-1.5 shrink-0  transition-opacity">
           <button
             onClick={() => setIsEditing(true)}
             className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors"
